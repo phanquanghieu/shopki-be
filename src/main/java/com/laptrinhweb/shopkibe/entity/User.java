@@ -14,6 +14,11 @@ public class User {
     @Column(nullable = false, unique = true)
     private String phone;
 
+    @Column(unique = true)
+    private String email;
+
+    private Long shop_id;
+
     @JsonIgnore
     private String password;
 
@@ -28,6 +33,14 @@ public class User {
     public User(Long id, String phone, String password) {
         this.id = id;
         this.phone = phone;
+        this.password = password;
+    }
+
+    public User(Long id, String phone, String email, Long shop_id, String password) {
+        this.id = id;
+        this.phone = phone;
+        this.email = email;
+        this.shop_id = shop_id;
         this.password = password;
     }
 
@@ -53,5 +66,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getShop_id() {
+        return shop_id;
+    }
+
+    public void setShop_id(Long shop_id) {
+        this.shop_id = shop_id;
     }
 }

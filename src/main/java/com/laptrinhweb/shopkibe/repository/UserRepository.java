@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByPhone(String phone);
+
+    Optional<User> findById(Long id);
 
     @Query("select u from User u where u.phone = ?1")
     User checkExistPhone(String phone);
