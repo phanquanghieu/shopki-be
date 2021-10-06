@@ -30,18 +30,18 @@ public class SellerController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/")
-    public LoginResponse login(@RequestBody AuthRequest authRequest){
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authRequest.getPhone(),
-                        authRequest.getPassword()
-                )
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtTokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
-        Seller seller = sellerService.getSellerByUsername(authRequest.getPhone());
-
-        return new LoginSellerResponsive(token,seller);
-    }
+//    @PostMapping("/")
+//    public LoginResponse login(@RequestBody AuthRequest authRequest){
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        authRequest.getPhone(),
+//                        authRequest.getPassword()
+//                )
+//        );
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        String token = jwtTokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
+//        Seller seller = sellerService.getSellerByUsername(authRequest.getPhone());
+//
+//        return new LoginSellerResponsive(token,seller);
+//    }
 }
