@@ -8,10 +8,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private Long shop_id;
+
+    public Long getShop_id() {
+        return shop_id;
+    }
+
+    public void setShop_id(Long shop_id) {
+        this.shop_id = shop_id;
+    }
+
+    private Long shop_id;
     private String name;
 //    private String img;
     private Long price;
+    private String description;
 //    private int stock;
 
     public  Product(){}
