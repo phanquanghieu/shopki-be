@@ -4,6 +4,9 @@ public class ApiResponse {
     private int error;
     private String msg;
 
+    public ApiResponse() {
+    }
+
     public ApiResponse(int error) {
         this.error = error;
     }
