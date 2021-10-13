@@ -31,6 +31,15 @@ public class ProductService {
         return new ProductResponse(productDTOS);
     }
 
+    public ApiResponse create(ProductDTO productDTO){
+        Product product = new Product();
+        product.setShop_id(productDTO.getShopId());
+        product.setPrice(productDTO.getPrice());
+        product.setName(productDTO.getName());
+        productRepository.save(product);
+        return new ApiResponse(0);
+    }
+
     public ApiResponse update(ProductDTO productDTO) {
         Product product = productRepository.getById(productDTO.getId());
         product.setShop_id(productDTO.getShopId());

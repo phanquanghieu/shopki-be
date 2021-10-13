@@ -26,13 +26,7 @@ public class ProductController {
 
     @PostMapping("/create")
     public ApiResponse createProduct(@RequestBody ProductDTO productDTO){
-        //System.out.println(productReq);
-        Product product = new Product();
-        product.setShop_id(productDTO.getShopId());
-        product.setPrice(productDTO.getPrice());
-        product.setName(productDTO.getName());
-        productRepository.save(product);
-        return new ApiResponse(0);
+        return productService.create(productDTO);
     }
 
     @PutMapping("/update")
