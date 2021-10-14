@@ -1,9 +1,12 @@
 package com.laptrinhweb.shopkibe.service;
 
 import com.laptrinhweb.shopkibe.dtos.ProductDTO;
+import com.laptrinhweb.shopkibe.dtos.ShopDTO;
 import com.laptrinhweb.shopkibe.entity.Product;
+import com.laptrinhweb.shopkibe.entity.Shop;
 import com.laptrinhweb.shopkibe.payload.ApiResponse;
 import com.laptrinhweb.shopkibe.repository.ProductRepository;
+import com.laptrinhweb.shopkibe.repository.ShopRepository;
 import com.laptrinhweb.shopkibe.responses.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +20,15 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ShopRepository shopRepository;
+
     public ProductResponse getProduct() {
         List<Product> products = productRepository.getAllProduct();
         List<ProductDTO> productDTOS = new ArrayList<>();
         for (Product product : products) {
             ProductDTO productDTO = new ProductDTO();
+            productDTO.setShop(mapShopData(product));
             productDTO.setId(product.getId());
             productDTO.setShopId(product.getShop_id());
             productDTO.setName(product.getName());
@@ -58,5 +65,20 @@ public class ProductService {
             productRepository.delete(product);
         }
         return response;
+    }
+
+    protected ShopDTO mapShopData(Product product) {
+        ShopDTO shopDTO = null;
+        if (product.getShop_id()!=null){
+            Shop shop = shopRepository.getById(product.getShop_id());
+            if (shop != null) {
+                shopDTO = new ShopDTO();
+                shopDTO.setAddress(shop.getAddress());
+                shopDTO.setImg(shop.getImg());
+                shopDTO.setUser_id(shop.getUser_id());
+                shopDTO.setId(shop.getId());
+            }
+        }
+        return shopDTO;
     }
 }
