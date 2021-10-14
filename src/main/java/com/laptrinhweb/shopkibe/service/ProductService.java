@@ -77,6 +77,7 @@ public class ProductService {
                 shopDTO.setImg(shop.getImg());
                 shopDTO.setUser_id(shop.getUser_id());
                 shopDTO.setId(shop.getId());
+                shopDTO.setName(shop.getName());
             }
         }
         return shopDTO;
