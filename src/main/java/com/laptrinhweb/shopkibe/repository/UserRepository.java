@@ -17,6 +17,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where u.phone = ?1")
     User checkExistPhone(String phone);
 
+    //User findByPhone(String phone);
+
+    User findByEmail(String email);
+
     @Query("select u from User u")
     ArrayList<User> getAllUser ();
 }

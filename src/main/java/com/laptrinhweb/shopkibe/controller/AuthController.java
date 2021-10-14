@@ -98,12 +98,19 @@ public class AuthController {
 
     @PostMapping("/sendmail")
     public ApiResponse sendMail(@RequestBody OTPRequest otpRequest){
+        ApiResponse response = new ApiResponse();
         long otpCode = (long)Math.floor(Math.random()*9000+1000);
-        mailService.sendSimpleEmail(otpRequest.getEmail() ,String.valueOf(otpCode));
-
-        Otp otp = new Otp(otpRequest.getId(), otpCode);
-        otpRepository.save(otp);
-        return new ApiResponse(0);
+        User user = userRepository.findByEmail(otpRequest.getEmail());
+        if (user != null) {
+            response.setError(1);
+            response.setMsg("Email da ton tai");
+        } else {
+            response.setError(0);
+            mailService.sendSimpleEmail(otpRequest.getEmail() ,String.valueOf(otpCode));
+            Otp otp = new Otp(otpRequest.getId(), otpCode);
+            otpRepository.save(otp);
+        }
+        return response;
     }
 
     @PostMapping("/confirmOTP")

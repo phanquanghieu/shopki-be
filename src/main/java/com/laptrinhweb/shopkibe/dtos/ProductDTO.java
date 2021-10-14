@@ -8,10 +8,7 @@ public class ProductDTO {
     private String description;
     private Long shopId;
     private Long price;
-
-
-
-    private Shop shop;
+    private ShopDTO shop;
 
     public Long getId() {
         return id;
@@ -52,11 +49,11 @@ public class ProductDTO {
     public void setPrice(Long price) {
         this.price = price;
     }
-    public Shop getShop() {
+    public ShopDTO getShop() {
         return shop;
     }
 
-    public void setShop(Shop shop) {
+    public void setShop(ShopDTO shop) {
         this.shop = shop;
     }
 }
