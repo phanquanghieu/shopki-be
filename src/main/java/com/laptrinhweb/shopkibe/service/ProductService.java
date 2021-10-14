@@ -2,8 +2,10 @@ package com.laptrinhweb.shopkibe.service;
 
 import com.laptrinhweb.shopkibe.dtos.ProductDTO;
 import com.laptrinhweb.shopkibe.entity.Product;
+import com.laptrinhweb.shopkibe.entity.Shop;
 import com.laptrinhweb.shopkibe.payload.ApiResponse;
 import com.laptrinhweb.shopkibe.repository.ProductRepository;
+import com.laptrinhweb.shopkibe.repository.ShopRepository;
 import com.laptrinhweb.shopkibe.responses.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,19 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ShopRepository shopRepository;
+
     public ProductResponse getProduct() {
         List<Product> products = productRepository.getAllProduct();
         List<ProductDTO> productDTOS = new ArrayList<>();
+        Shop shop=new Shop();
         for (Product product : products) {
             ProductDTO productDTO = new ProductDTO();
+            if (product.getShop_id()!=null){
+                 shop=shopRepository.getById(product.getShop_id());
+
+            }
             productDTO.setId(product.getId());
             productDTO.setShopId(product.getShop_id());
             productDTO.setName(product.getName());

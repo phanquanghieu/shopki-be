@@ -119,13 +119,13 @@ public class AuthController {
 
     @PostMapping("/createShop")
     public ApiResponse createShop(@RequestBody OTPRequest otpRequest){
-        Shop shop = new Shop(otpRequest.getShopName(), otpRequest.getShopAddress(), otpRequest.getId());
-        Shop shopCreated = shopRepository.save(shop);
-        User user = userRepository.findById(otpRequest.getId()).orElseThrow();
-        user.setEmail(otpRequest.getEmail());
-        user.setShop_id(shopCreated.getId());
-        userRepository.save(user);
-        return new ApiResponse(0);
+            Shop shop = new Shop(otpRequest.getShopName(), otpRequest.getShopAddress(), otpRequest.getId());
+            Shop shopCreated = shopRepository.save(shop);
+            User user = userRepository.findById(otpRequest.getId()).orElseThrow();
+            user.setEmail(otpRequest.getEmail());
+            user.setShop_id(shopCreated.getId());
+            userRepository.save(user);
+            return new ApiResponse(0);
     }
 }
 

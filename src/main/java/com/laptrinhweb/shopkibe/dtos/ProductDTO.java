@@ -1,11 +1,17 @@
 package com.laptrinhweb.shopkibe.dtos;
 
+import com.laptrinhweb.shopkibe.entity.Shop;
+
 public class ProductDTO {
     private Long id;
     private String name;
     private String description;
     private Long shopId;
     private Long price;
+
+
+
+    private Shop shop;
 
     public Long getId() {
         return id;
@@ -45,5 +51,12 @@ public class ProductDTO {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 }
