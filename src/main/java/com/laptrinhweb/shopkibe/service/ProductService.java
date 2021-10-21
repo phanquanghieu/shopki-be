@@ -9,6 +9,7 @@ import com.laptrinhweb.shopkibe.repository.ProductRepository;
 import com.laptrinhweb.shopkibe.repository.ShopRepository;
 import com.laptrinhweb.shopkibe.responses.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ProductService {
     @Autowired
     private ShopRepository shopRepository;
 
-    public ProductResponse getProduct() {
+    public ProductResponse getProducts() {
         List<Product> products = productRepository.getAllProduct();
         List<ProductDTO> productDTOS = new ArrayList<>();
         for (Product product : products) {
@@ -36,6 +37,18 @@ public class ProductService {
             productDTOS.add(productDTO);
         }
         return new ProductResponse(productDTOS);
+    }
+
+    public ProductResponse getProduct(ProductDTO productDTO){
+        Product product=productRepository.getById(productDTO.getId());
+        ProductDTO productDTOs=new ProductDTO();
+        productDTOs.setShop(mapShopData(product));
+        productDTOs.setId(product.getId());
+        productDTOs.setShopId(product.getShop_id());
+        productDTOs.setName(product.getName());
+        productDTOs.setPrice(product.getPrice());
+        return new ProductResponse(productDTOs);
+
     }
 
     public ApiResponse create(ProductDTO productDTO){
