@@ -34,7 +34,7 @@ public class ProductController {
         return productService.update(productDTO);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ProductResponse getAllProduct(){
         return productService.getProducts();
     }
