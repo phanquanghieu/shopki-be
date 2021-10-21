@@ -5,17 +5,29 @@ import com.laptrinhweb.shopkibe.dtos.ProductDTO;
 import java.util.List;
 
 public class ProductResponse {
-    public List<ProductDTO> getProducts() {
-        return products;
-    }
 
     public ProductResponse(List<ProductDTO> products) {
         this.products = products;
     }
+    public ProductResponse(ProductDTO product) {
+        this.product = product;
+    }
+
+    private List<ProductDTO> products;
+
+    private ProductDTO product;
 
     public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
+    public List<ProductDTO> getProducts() {
+        return products;
+    }
+    public ProductDTO getProduct() {
+        return product;
+    }
 
-    private List<ProductDTO> products;
+    public void setProduct(ProductDTO product) {
+        this.product = product;
+    }
 }

@@ -34,10 +34,13 @@ public class ProductController {
         return productService.update(productDTO);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ProductResponse getAllProduct(){
-        return productService.getProduct();
+        return productService.getProducts();
     }
+
+    @PostMapping("/getById")
+    public ProductResponse getOneProduct(@RequestBody ProductDTO productDTO){return productService.getProduct(productDTO);}
 
     @DeleteMapping
     public ApiResponse delete(@RequestBody ProductDTO productDTO) {
