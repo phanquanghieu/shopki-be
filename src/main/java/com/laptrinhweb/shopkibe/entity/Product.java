@@ -25,7 +25,6 @@ public class Product {
 //    private int stock;
 
     public  Product(){}
-
     public Product(String name, Long price) {
         this.name = name;
         this.price = price;
@@ -62,3 +61,4 @@ public class Product {
         this.price = price;
     }
 }
+

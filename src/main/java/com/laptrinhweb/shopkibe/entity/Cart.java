@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String shop;
     private String img ;
@@ -15,17 +16,19 @@ public class Cart {
     private Double price ;
     private Long quantity ;
     private Double sum;
+    @Column(name = "user_id")
+    private Long user_id;
 
 
     public Cart(){}
 
-    public Cart(String shop,String img , String product , Double price , Long quantity){
+    public Cart(String shop,String img , String product , Double price , Long quantity,Long user_id){
         this.shop = shop;
         this.img = img ;
         this.product = product;
         this.price = price;
         this.quantity = quantity;
-
+        this.user_id = user_id;
     }
     public Cart(Long id,String shop,String img , String product , Double price , Long quantity,Double sum){
         this.id = id ;
@@ -35,6 +38,18 @@ public class Cart {
         this.price = price;
         this.quantity = quantity;
         this.sum = sum;
+    }
+
+    public Cart(Long id, String shop, String img, String product, Double price, Long quantity, Double sum, Long user_id) {
+
+        this.id = id;
+        this.shop = shop;
+        this.img = img;
+        this.product = product;
+        this.price = price;
+        this.quantity = quantity;
+        this.sum = sum;
+        this.user_id = user_id;
     }
 
     public Long getId() {
@@ -86,6 +101,14 @@ public class Cart {
 
     public void setSum(Double sum) {
         this.sum = sum;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }
 
