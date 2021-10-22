@@ -3,6 +3,9 @@ package com.laptrinhweb.shopkibe.dtos;
 public class ShopDTO {
     private Long id;
     private String name;
+    private String img;
+    private String address;
+    private Long user_id;
 
     public Long getId() {
         return id;
@@ -44,7 +47,5 @@ public class ShopDTO {
         this.user_id = user_id;
     }
 
-    private String img;
-    private String address;
-    private Long user_id;
+
 }
