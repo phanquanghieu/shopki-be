@@ -10,6 +10,8 @@ public class ProductDTO {
     private Long price;
     private ShopDTO shop;
 
+    private String imageUrl;
+
     public Long getId() {
         return id;
     }
@@ -55,5 +57,12 @@ public class ProductDTO {
 
     public void setShop(ShopDTO shop) {
         this.shop = shop;
+    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

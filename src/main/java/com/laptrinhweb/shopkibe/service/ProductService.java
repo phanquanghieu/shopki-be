@@ -34,6 +34,8 @@ public class ProductService {
             productDTO.setShopId(product.getShop_id());
             productDTO.setName(product.getName());
             productDTO.setPrice(product.getPrice());
+            productDTO.setImageUrl(product.getImageUrl());
+            productDTO.setDescription(product.getDescription());
             productDTOS.add(productDTO);
         }
         return new ProductResponse(productDTOS);
@@ -47,6 +49,8 @@ public class ProductService {
         productDTOs.setShopId(product.getShop_id());
         productDTOs.setName(product.getName());
         productDTOs.setPrice(product.getPrice());
+        productDTOs.setImageUrl(product.getImageUrl());
+        productDTOs.setDescription(product.getDescription());
         return new ProductResponse(productDTOs);
 
     }
@@ -56,6 +60,8 @@ public class ProductService {
         product.setShop_id(productDTO.getShopId());
         product.setPrice(productDTO.getPrice());
         product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setImageUrl(productDTO.getImageUrl());
         productRepository.save(product);
         return new ApiResponse(0);
     }
