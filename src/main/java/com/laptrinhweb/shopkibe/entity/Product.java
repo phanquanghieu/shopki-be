@@ -9,20 +9,18 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Long getShop_id() {
-        return shop_id;
-    }
-
-    public void setShop_id(Long shop_id) {
-        this.shop_id = shop_id;
-    }
-
+    @Column
     private Long shop_id;
+    @Column
     private String name;
 //    private String img;
+    @Column
     private Long price;
+    @Column
     private String description;
-//    private int stock;
+    //    private int stock;
+    @Column
+    private String imageUrl;
 
     public  Product(){}
     public Product(String name, Long price) {
@@ -60,5 +58,28 @@ public class Product {
     public void setPrice(Long price) {
         this.price = price;
     }
+    public Long getShop_id() {
+        return shop_id;
+    }
+
+    public void setShop_id(Long shop_id) {
+        this.shop_id = shop_id;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 }
 
