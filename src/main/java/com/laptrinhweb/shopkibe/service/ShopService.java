@@ -2,6 +2,7 @@ package com.laptrinhweb.shopkibe.service;
 
 import com.laptrinhweb.shopkibe.dtos.ShopDTO;
 import com.laptrinhweb.shopkibe.entity.Shop;
+import com.laptrinhweb.shopkibe.payload.ApiResponse;
 import com.laptrinhweb.shopkibe.repository.ShopRepository;
 import com.laptrinhweb.shopkibe.responses.ShopResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,14 @@ public class ShopService {
         shopDTOs.setId(shop.getId());
         shopDTOs.setName(shop.getName());
         return new ShopResponse(shopDTOs);
+    }
+
+    public ApiResponse editShop(ShopDTO shopDTO){
+        Shop shop=shopRepository.getById(shopDTO.getId());
+        shop.setAddress(shopDTO.getAddress());
+        shop.setImg(shopDTO.getImg());
+        shop.setName(shopDTO.getName());
+        shopRepository.save(shop);
+        return new ApiResponse(0);
     }
 }
