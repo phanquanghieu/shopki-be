@@ -8,9 +8,14 @@ public class Voucher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
+
     private String img ;
+
     private String name ;
+
     private String description ;
+
+
     public Voucher(){}
     public Voucher(String img ,String name,String description){
         this.img = img ;
