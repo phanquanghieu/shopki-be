@@ -3,7 +3,7 @@ package com.laptrinhweb.shopkibe.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ware_house")
+@Table(name = "warehouse")
 public class WareHouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +13,26 @@ public class WareHouse {
     private String address;
     @Column
     private Long shop_id;
-
     @Column
     private String name;
+    @Column
+    private String image_url;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
 
     public Long getId() {
         return id;

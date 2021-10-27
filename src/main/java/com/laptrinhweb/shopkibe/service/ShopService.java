@@ -14,20 +14,38 @@ public class ShopService {
     private ShopRepository shopRepository;
 
 
-    public ShopResponse getShop(String id){
-        Shop shop=shopRepository.getById(Long.parseLong(id));
-        ShopDTO shopDTOs=new ShopDTO();
+    public ShopResponse getShop(String id) {
+        Shop shop = shopRepository.getById(Long.parseLong(id));
+        ShopDTO shopDTOs = new ShopDTO();
         shopDTOs.setId(shop.getId());
         shopDTOs.setName(shop.getName());
         return new ShopResponse(shopDTOs);
     }
 
-    public ApiResponse editShop(ShopDTO shopDTO){
-        Shop shop=shopRepository.getById(shopDTO.getId());
+    public ApiResponse editShop(ShopDTO shopDTO) {
+        Shop shop = shopRepository.getById(shopDTO.getId());
         shop.setAddress(shopDTO.getAddress());
         shop.setImg(shopDTO.getImg());
         shop.setName(shopDTO.getName());
         shopRepository.save(shop);
         return new ApiResponse(0);
+    }
+
+    public ApiResponse activeShop(ShopDTO shopDTO) {
+        Shop shop = shopRepository.getById(shopDTO.getId());
+        if (shop != null) {
+            shop.setActive(true);
+            shopRepository.save(shop);
+            return new ApiResponse(0);
+        } else return new ApiResponse(1);
+    }
+
+    public ApiResponse unActiveShop(ShopDTO shopDTO) {
+        Shop shop = shopRepository.getById(shopDTO.getId());
+        if (shop != null) {
+            shop.setActive(false);
+            shopRepository.save(shop);
+            return new ApiResponse(0);
+        } else return new ApiResponse(1);
     }
 }

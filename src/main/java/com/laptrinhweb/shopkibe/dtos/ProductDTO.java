@@ -11,6 +11,15 @@ public class ProductDTO {
     private ShopDTO shop;
 
     private String imageUrl;
+    private Long warehouse_id;
+
+    public Long getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(Long warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
 
     public Long getId() {
         return id;

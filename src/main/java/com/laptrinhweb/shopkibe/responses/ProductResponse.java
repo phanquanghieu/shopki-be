@@ -9,6 +9,7 @@ public class ProductResponse {
     public ProductResponse(List<ProductDTO> products) {
         this.products = products;
     }
+
     public ProductResponse(ProductDTO product) {
         this.product = product;
     }
@@ -20,9 +21,11 @@ public class ProductResponse {
     public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
+
     public List<ProductDTO> getProducts() {
         return products;
     }
+
     public ProductDTO getProduct() {
         return product;
     }

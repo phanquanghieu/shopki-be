@@ -13,7 +13,7 @@ public class Product {
     private Long shop_id;
     @Column
     private String name;
-//    private String img;
+    //    private String img;
     @Column
     private Long price;
     @Column
@@ -22,7 +22,22 @@ public class Product {
     @Column
     private String imageUrl;
 
-    public  Product(){}
+    @Column
+    private Long warehouse_id;
+
+    public Long getWarehouse_id() {
+        return warehouse_id;
+    }
+
+    public void setWarehouse_id(Long warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
+
+
+
+    public Product() {
+    }
+
     public Product(String name, Long price) {
         this.name = name;
         this.price = price;
@@ -58,6 +73,7 @@ public class Product {
     public void setPrice(Long price) {
         this.price = price;
     }
+
     public Long getShop_id() {
         return shop_id;
     }
@@ -65,6 +81,7 @@ public class Product {
     public void setShop_id(Long shop_id) {
         this.shop_id = shop_id;
     }
+
     public String getDescription() {
         return description;
     }
