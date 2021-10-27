@@ -19,6 +19,16 @@ public class Shop implements Serializable {
 
     private Long user_id;
 
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    private Boolean isActive;
+
     public Shop(){
 
     }

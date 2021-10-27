@@ -1,29 +1,38 @@
 package com.laptrinhweb.shopkibe.controller;
 
+import com.laptrinhweb.shopkibe.dtos.ProductDTO;
 import com.laptrinhweb.shopkibe.dtos.WareHouseDTO;
 import com.laptrinhweb.shopkibe.payload.ApiResponse;
+import com.laptrinhweb.shopkibe.responses.WareHouseResponse;
 import com.laptrinhweb.shopkibe.service.WareHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/warehouse")
 public class WareHouseController {
     @Autowired
     private WareHouseService wareHouseService;
 
     @GetMapping()
-    public String getWareHouse(){
-        return "chinh";
+    public WareHouseResponse getWareHouse(){
+        return wareHouseService.getWarehouses();
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public ApiResponse createWareHouse(@RequestBody WareHouseDTO wareHouseDTO){
         return wareHouseService.create(wareHouseDTO);
+    }
+
+    @DeleteMapping()
+    public ApiResponse deleteWarehouse(@RequestBody WareHouseDTO wareHouseDTO){
+        return wareHouseService.delete(wareHouseDTO);
+    }
+
+    @PostMapping("/product/create")
+    public ApiResponse createProduct(@RequestBody ProductDTO productDTO){
+        return wareHouseService.createProduct(productDTO);
     }
 
 }

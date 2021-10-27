@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Long> {
-    @Query("select p from Product p")
+    @Query("select p from Shop p")
     ArrayList<Shop> getAllShop();
 }

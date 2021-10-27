@@ -14,12 +14,22 @@ public class ShopController {
     private ShopService shopService;
 
     @GetMapping()
-    public ShopResponse getShop(@RequestParam String id){
+    public ShopResponse getShop(@RequestParam String id) {
         return shopService.getShop(id);
     }
 
     @PostMapping("/edit")
-    public ApiResponse editShop(@RequestBody ShopDTO shopDTO){
+    public ApiResponse editShop(@RequestBody ShopDTO shopDTO) {
         return shopService.editShop(shopDTO);
+    }
+
+    @PutMapping("/active")
+    public ApiResponse activeShop(@RequestBody ShopDTO shopDTO) {
+        return shopService.activeShop(shopDTO);
+    }
+
+    @PutMapping("/unActive")
+    public ApiResponse unActiveShop(@RequestBody ShopDTO shopDTO) {
+        return shopService.unActiveShop(shopDTO);
     }
 }
