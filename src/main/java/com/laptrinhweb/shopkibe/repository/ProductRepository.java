@@ -11,4 +11,7 @@ import java.util.ArrayList;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p")
     ArrayList<Product> getAllProduct();
+
+    @Query("select p from Product p where p.warehouse_id=?1")
+    ArrayList<Product> getProductInWarehouse(Long id);
 }

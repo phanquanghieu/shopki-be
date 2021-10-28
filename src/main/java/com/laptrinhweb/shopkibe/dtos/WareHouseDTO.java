@@ -1,6 +1,9 @@
 package com.laptrinhweb.shopkibe.dtos;
 
+import com.laptrinhweb.shopkibe.entity.Product;
+
 import javax.persistence.Column;
+import java.util.List;
 
 public class WareHouseDTO {
     public Long getId() {
@@ -19,6 +22,16 @@ public class WareHouseDTO {
     private Long shop_id;
 
     private String name;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    private List<Product> products;
 
     public String getImage_url() {
         return image_url;

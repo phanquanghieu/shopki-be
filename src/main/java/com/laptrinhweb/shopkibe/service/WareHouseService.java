@@ -75,6 +75,23 @@ public class WareHouseService {
         return new ApiResponse(0);
     }
 
+    public WareHouseResponse getWarehouse(String id){
+        WareHouse wareHouse=wareHouseRepository.getById(Long.parseLong(id));
+        WareHouseDTO wareHouseDTO=new WareHouseDTO();
+        wareHouseDTO.setId(wareHouse.getId());
+        wareHouseDTO.setName(wareHouse.getName());
+        wareHouseDTO.setAddress(wareHouse.getAddress());
+        wareHouseDTO.setImage_url(wareHouse.getImage_url());
+        wareHouseDTO.setShop_id(wareHouse.getShop_id());
+        wareHouseDTO.setProducts(mapProductWarehouse(id));
+        return new WareHouseResponse(wareHouseDTO);
+    }
+
+    protected List<Product> mapProductWarehouse(String id){
+        List<Product> products=productRepository.getProductInWarehouse(Long.parseLong(id));
+        return products;
+    }
+
 //    public ProductResponse getProductsWarehouse(String id){
 //
 //
