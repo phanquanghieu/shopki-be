@@ -44,6 +44,7 @@ public class ProductService {
             productDTO.setDescription(product.getDescription());
             productDTO.setWarehouse_id(product.getWarehouse_id());
             productDTO.setWareHouse(mapWareData(product));
+            productDTO.setExport(product.getExport());
             productDTOS.add(productDTO);
         }
         return new ProductResponse(productDTOS);
@@ -70,6 +71,7 @@ public class ProductService {
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setImageUrl(productDTO.getImageUrl());
+        product.setExport(true);
         productRepository.save(product);
         return new ApiResponse(0);
     }

@@ -69,6 +69,7 @@ public class WareHouseService {
         product.setDescription(productDTO.getDescription());
         product.setImageUrl(productDTO.getImageUrl());
         product.setWarehouse_id(productDTO.getWarehouse_id());
+        product.setExport(false);
 
         productRepository.save(product);
 
@@ -87,10 +88,18 @@ public class WareHouseService {
         return new WareHouseResponse(wareHouseDTO);
     }
 
+    public ApiResponse exportProduct(ProductDTO productDTO){
+        Product product=productRepository.getById(productDTO.getId());
+        product.setExport(true);
+        productRepository.save(product);
+        return new ApiResponse(0);
+    }
+
     protected List<Product> mapProductWarehouse(String id){
         List<Product> products=productRepository.getProductInWarehouse(Long.parseLong(id));
         return products;
     }
+
 
 //    public ProductResponse getProductsWarehouse(String id){
 //

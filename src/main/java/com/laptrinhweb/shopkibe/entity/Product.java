@@ -25,6 +25,18 @@ public class Product {
     @Column
     private Long warehouse_id;
 
+
+    @Column
+    private Boolean isExport;
+
+    public Boolean getExport() {
+        return isExport;
+    }
+
+    public void setExport(Boolean export) {
+        isExport = export;
+    }
+
     public Long getWarehouse_id() {
         return warehouse_id;
     }
@@ -32,7 +44,6 @@ public class Product {
     public void setWarehouse_id(Long warehouse_id) {
         this.warehouse_id = warehouse_id;
     }
-
 
 
     public Product() {

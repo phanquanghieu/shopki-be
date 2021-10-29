@@ -12,6 +12,16 @@ public class ProductDTO {
     private Long warehouse_id;
     private WareHouseDTO warehouse;
 
+    private Boolean isExport;
+
+    public Boolean getExport() {
+        return isExport;
+    }
+
+    public void setExport(Boolean export) {
+        isExport = export;
+    }
+
     public WareHouseDTO getWareHouse() {
         return warehouse;
     }
