@@ -35,4 +35,14 @@ public class WareHouseController {
         return wareHouseService.createProduct(productDTO);
     }
 
+    @GetMapping("/detail")
+    public WareHouseResponse getDetailWarehouse(@RequestParam String id){
+        return wareHouseService.getWarehouse(id);
+    }
+
+    @PostMapping("export")
+    public ApiResponse exportProduct(@RequestBody ProductDTO productDTO){
+        return wareHouseService.exportProduct(productDTO);
+    }
+
 }

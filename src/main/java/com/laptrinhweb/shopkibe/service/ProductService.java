@@ -2,11 +2,14 @@ package com.laptrinhweb.shopkibe.service;
 
 import com.laptrinhweb.shopkibe.dtos.ProductDTO;
 import com.laptrinhweb.shopkibe.dtos.ShopDTO;
+import com.laptrinhweb.shopkibe.dtos.WareHouseDTO;
 import com.laptrinhweb.shopkibe.entity.Product;
 import com.laptrinhweb.shopkibe.entity.Shop;
+import com.laptrinhweb.shopkibe.entity.WareHouse;
 import com.laptrinhweb.shopkibe.payload.ApiResponse;
 import com.laptrinhweb.shopkibe.repository.ProductRepository;
 import com.laptrinhweb.shopkibe.repository.ShopRepository;
+import com.laptrinhweb.shopkibe.repository.WareHouseRepository;
 import com.laptrinhweb.shopkibe.responses.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
@@ -24,6 +27,9 @@ public class ProductService {
     @Autowired
     private ShopRepository shopRepository;
 
+    @Autowired
+    private WareHouseRepository wareHouseRepository;
+
     public ProductResponse getProducts() {
         List<Product> products = productRepository.getAllProduct();
         List<ProductDTO> productDTOS = new ArrayList<>();
@@ -36,14 +42,17 @@ public class ProductService {
             productDTO.setPrice(product.getPrice());
             productDTO.setImageUrl(product.getImageUrl());
             productDTO.setDescription(product.getDescription());
+            productDTO.setWarehouse_id(product.getWarehouse_id());
+            productDTO.setWareHouse(mapWareData(product));
+            productDTO.setExport(product.getExport());
             productDTOS.add(productDTO);
         }
         return new ProductResponse(productDTOS);
     }
 
-    public ProductResponse getProduct(ProductDTO productDTO){
-        Product product=productRepository.getById(productDTO.getId());
-        ProductDTO productDTOs=new ProductDTO();
+    public ProductResponse getProduct(ProductDTO productDTO) {
+        Product product = productRepository.getById(productDTO.getId());
+        ProductDTO productDTOs = new ProductDTO();
         productDTOs.setShop(mapShopData(product));
         productDTOs.setId(product.getId());
         productDTOs.setShopId(product.getShop_id());
@@ -55,13 +64,14 @@ public class ProductService {
 
     }
 
-    public ApiResponse create(ProductDTO productDTO){
+    public ApiResponse create(ProductDTO productDTO) {
         Product product = new Product();
         product.setShop_id(productDTO.getShopId());
         product.setPrice(productDTO.getPrice());
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setImageUrl(productDTO.getImageUrl());
+        product.setExport(true);
         productRepository.save(product);
         return new ApiResponse(0);
     }
@@ -88,7 +98,7 @@ public class ProductService {
 
     protected ShopDTO mapShopData(Product product) {
         ShopDTO shopDTO = null;
-        if (product.getShop_id()!=null){
+        if (product.getShop_id() != null) {
             Shop shop = shopRepository.getById(product.getShop_id());
             if (shop != null) {
                 shopDTO = new ShopDTO();
@@ -100,5 +110,19 @@ public class ProductService {
             }
         }
         return shopDTO;
+    }
+
+    protected WareHouseDTO mapWareData(Product product) {
+        WareHouseDTO wareHouseDTO = null;
+        if (product.getWarehouse_id() != null) {
+            WareHouse wareHouse = wareHouseRepository.getById(product.getWarehouse_id());
+            if (wareHouse != null) {
+                wareHouseDTO = new WareHouseDTO();
+                wareHouseDTO.setName(wareHouse.getName());
+            }
+
+        }
+        return wareHouseDTO;
+
     }
 }

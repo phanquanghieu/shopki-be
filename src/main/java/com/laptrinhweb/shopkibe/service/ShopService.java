@@ -19,6 +19,8 @@ public class ShopService {
         ShopDTO shopDTOs = new ShopDTO();
         shopDTOs.setId(shop.getId());
         shopDTOs.setName(shop.getName());
+        shopDTOs.setAddress(shop.getAddress());
+        shopDTOs.setImg(shop.getImg());
         return new ShopResponse(shopDTOs);
     }
 

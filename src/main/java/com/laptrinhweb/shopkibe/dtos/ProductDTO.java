@@ -1,7 +1,5 @@
 package com.laptrinhweb.shopkibe.dtos;
 
-import com.laptrinhweb.shopkibe.entity.Shop;
-
 public class ProductDTO {
     private Long id;
     private String name;
@@ -12,6 +10,25 @@ public class ProductDTO {
 
     private String imageUrl;
     private Long warehouse_id;
+    private WareHouseDTO warehouse;
+
+    private Boolean isExport;
+
+    public Boolean getExport() {
+        return isExport;
+    }
+
+    public void setExport(Boolean export) {
+        isExport = export;
+    }
+
+    public WareHouseDTO getWareHouse() {
+        return warehouse;
+    }
+
+    public void setWareHouse(WareHouseDTO warehouse) {
+        this.warehouse = warehouse;
+    }
 
     public Long getWarehouse_id() {
         return warehouse_id;
@@ -60,6 +77,7 @@ public class ProductDTO {
     public void setPrice(Long price) {
         this.price = price;
     }
+
     public ShopDTO getShop() {
         return shop;
     }
@@ -67,6 +85,7 @@ public class ProductDTO {
     public void setShop(ShopDTO shop) {
         this.shop = shop;
     }
+
     public String getImageUrl() {
         return imageUrl;
     }

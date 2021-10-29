@@ -6,17 +6,31 @@ import java.util.List;
 
 public class WareHouseResponse {
     public List<WareHouseDTO> getWareHouses() {
-        return wareHouses;
+        return warehouses;
+    }
+
+    public WareHouseResponse(WareHouseDTO warehouse) {
+        this.warehouse = warehouse;
     }
 
     public WareHouseResponse(List<WareHouseDTO> wareHouses) {
-        this.wareHouses = wareHouses;
+        this.warehouses = wareHouses;
     }
 
     public void setWareHouses(List<WareHouseDTO> wareHouses) {
-        this.wareHouses = wareHouses;
+        this.warehouses = wareHouses;
     }
 
-    private List<WareHouseDTO> wareHouses;
+    private List<WareHouseDTO> warehouses;
+
+    public WareHouseDTO getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(WareHouseDTO warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    private WareHouseDTO warehouse;
 
 }

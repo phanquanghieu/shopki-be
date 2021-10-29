@@ -69,11 +69,37 @@ public class WareHouseService {
         product.setDescription(productDTO.getDescription());
         product.setImageUrl(productDTO.getImageUrl());
         product.setWarehouse_id(productDTO.getWarehouse_id());
+        product.setExport(false);
 
         productRepository.save(product);
 
         return new ApiResponse(0);
     }
+
+    public WareHouseResponse getWarehouse(String id){
+        WareHouse wareHouse=wareHouseRepository.getById(Long.parseLong(id));
+        WareHouseDTO wareHouseDTO=new WareHouseDTO();
+        wareHouseDTO.setId(wareHouse.getId());
+        wareHouseDTO.setName(wareHouse.getName());
+        wareHouseDTO.setAddress(wareHouse.getAddress());
+        wareHouseDTO.setImage_url(wareHouse.getImage_url());
+        wareHouseDTO.setShop_id(wareHouse.getShop_id());
+        wareHouseDTO.setProducts(mapProductWarehouse(id));
+        return new WareHouseResponse(wareHouseDTO);
+    }
+
+    public ApiResponse exportProduct(ProductDTO productDTO){
+        Product product=productRepository.getById(productDTO.getId());
+        product.setExport(true);
+        productRepository.save(product);
+        return new ApiResponse(0);
+    }
+
+    protected List<Product> mapProductWarehouse(String id){
+        List<Product> products=productRepository.getProductInWarehouse(Long.parseLong(id));
+        return products;
+    }
+
 
 //    public ProductResponse getProductsWarehouse(String id){
 //
