@@ -6,13 +6,7 @@ import javax.persistence.Column;
 import java.util.List;
 
 public class WareHouseDTO {
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     private  Long id;
 
@@ -65,5 +59,12 @@ public class WareHouseDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

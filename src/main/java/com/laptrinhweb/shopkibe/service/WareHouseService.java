@@ -55,8 +55,14 @@ public class WareHouseService {
         if (Objects.isNull(wareHouse)) {
             return new ApiResponse(1, "not find warehouse!");
         } else {
-            wareHouseRepository.delete(wareHouse);
-            return new ApiResponse(0);
+            if (mapProductWarehouse(wareHouseDTO.getId().toString()).isEmpty()){
+                wareHouseRepository.delete(wareHouse);
+                return new ApiResponse(0);
+
+            }else{
+                return new ApiResponse(1,"kho van con san pham");
+            }
+
         }
 
     }

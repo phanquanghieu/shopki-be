@@ -21,6 +21,7 @@ public class ShopService {
         shopDTOs.setName(shop.getName());
         shopDTOs.setAddress(shop.getAddress());
         shopDTOs.setImg(shop.getImg());
+        shopDTOs.setActive(shop.getActive());
         return new ShopResponse(shopDTOs);
     }
 
@@ -36,7 +37,7 @@ public class ShopService {
     public ApiResponse activeShop(ShopDTO shopDTO) {
         Shop shop = shopRepository.getById(shopDTO.getId());
         if (shop != null) {
-            shop.setActive(true);
+            shop.setActive(false);
             shopRepository.save(shop);
             return new ApiResponse(0);
         } else return new ApiResponse(1);
@@ -45,7 +46,7 @@ public class ShopService {
     public ApiResponse unActiveShop(ShopDTO shopDTO) {
         Shop shop = shopRepository.getById(shopDTO.getId());
         if (shop != null) {
-            shop.setActive(false);
+            shop.setActive(true);
             shopRepository.save(shop);
             return new ApiResponse(0);
         } else return new ApiResponse(1);
