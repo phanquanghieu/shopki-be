@@ -4,8 +4,11 @@ import com.laptrinhweb.shopkibe.dtos.VoucherDTO;
 import com.laptrinhweb.shopkibe.entity.Voucher;
 import com.laptrinhweb.shopkibe.payload.ApiResponse;
 import com.laptrinhweb.shopkibe.repository.VoucherRepository;
+import com.laptrinhweb.shopkibe.responses.VoucherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class VoucherService {
@@ -36,5 +39,10 @@ public class VoucherService {
             voucherRepository.save(voucher);
             return new ApiResponse(0);
         }else return new ApiResponse(1);
+    }
+
+    public VoucherResponse getVouchers(){
+        List<Voucher> vouchers=voucherRepository.getAllVoucher();
+        return new VoucherResponse(vouchers);
     }
 }

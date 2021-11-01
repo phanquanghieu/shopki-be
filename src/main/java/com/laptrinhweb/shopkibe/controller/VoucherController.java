@@ -7,6 +7,7 @@ import com.laptrinhweb.shopkibe.entity.Voucher;
 import com.laptrinhweb.shopkibe.payload.ApiResponse;
 import com.laptrinhweb.shopkibe.repository.ProductRepository;
 import com.laptrinhweb.shopkibe.repository.VoucherRepository;
+import com.laptrinhweb.shopkibe.responses.VoucherResponse;
 import com.laptrinhweb.shopkibe.service.VoucherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,8 +30,8 @@ public class VoucherController {
     }
 
     @GetMapping("")
-    public ArrayList<Voucher> getAllVoucher(){
-        return voucherRepository.getAllVoucher();
+    public VoucherResponse getAllVoucher(){
+        return voucherService.getVouchers();
     }
 
     @DeleteMapping
